@@ -15,6 +15,12 @@ pipeline{
                 echo "Building Artefacts"
                 """
             }
+            post {
+                success {
+                    echo "Now archiving the artifacts"
+                    archiveArtifacts artifacts: '**/*.jar'
+                }
+            }
         }
     }
 }
