@@ -8,6 +8,13 @@ pipeline{
                 ''' 
             }
         }
+        stage ('Build Application') {
+            steps {
+                sh 'mvn -f my-app/pom.xml clean package'
+                sh """
+                echo "Building Artefacts"
+                """
+            }
         stage('Sonarqube') {
             environment {
                 scannerHome = tool 'sonarqubescanner'
@@ -21,13 +28,6 @@ pipeline{
                 }
             }
         }
-        stage ('Build Application') {
-            steps {
-                sh 'mvn -f my-app/pom.xml clean package'
-                sh """
-                echo "Building Artefacts"
-                """
-            }
             post {
                 success {
                     echo "Now archiving the artifacts"
