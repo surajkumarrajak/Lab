@@ -2,12 +2,20 @@ pipeline{
     agent any
     {
         stages{
-            stage ('Test')
+            stage ('Build') {
+                steps {
+                    sh """
+                    echo "Building code"
+                    """
+                }
+            }
+            stage ('Test'){
             steps{
                 sh """
                 echo "testing code"
                 """
-                
+
+            } 
             }
         }
     }
