@@ -15,7 +15,14 @@ pipeline{
                 echo "Building Artefacts"
                 """
             }
-        stage('Sonarqube') {
+            post {
+                success {
+                    echo "Now archiving the artifacts"
+                    archiveArtifacts artifacts: '**/*.jar'
+                }
+            }
+        }
+          stage('Sonarqube') {
             environment {
                 scannerHome = tool 'sonarqubescanner'
             }    
@@ -25,13 +32,6 @@ pipeline{
                 }        
                 timeout(time: 10, unit: 'MINUTES') {
                  waitForQualityGate abortPipeline: true
-                }
-            }
-        }
-            post {
-                success {
-                    echo "Now archiving the artifacts"
-                    archiveArtifacts artifacts: '**/*.jar'
                 }
             }
         }
