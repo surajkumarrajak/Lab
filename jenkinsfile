@@ -29,7 +29,7 @@ pipeline{
             steps {
                 withSonarQubeEnv('sonarqube') {
                    bat """
-                    echo ${scannerHome}/bin/sonar-scanner
+                    echo ${scannerHome}\bin\sonar-scanner
                     ${scannerHome}/bin/sonar-scanner
                      -Dsonar.projectKey=mycompany \
                      -Dsonar.sources=. \
