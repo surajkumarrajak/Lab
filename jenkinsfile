@@ -10,16 +10,10 @@ pipeline{
         }
         stage ('Build Application') {
             steps {
-                sh 'mvn -f my-app/pom.xml clean package'
+                sh 'mvn -f my-app/pom.xml clean build package'
                 sh """
                 echo "Building Artefacts"
                 """
-            }
-            post {
-                success {
-                    echo "Now archiving the artifacts"
-                    archiveArtifacts artifacts: '**/*.jar'
-                }
             }
         }
           stage('Sonarqube') {
