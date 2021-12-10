@@ -10,7 +10,7 @@ pipeline{
         }
         stage ('Build Application') {
             steps {
-                sh 'mvn -f my-app/pom.xml clean build package'
+                sh 'mvn -f my-app/pom.xml clean package'
                 sh """
                 echo "Building Artefacts"
                 """
