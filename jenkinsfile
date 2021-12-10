@@ -28,7 +28,7 @@ pipeline{
             }    
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh """
+                    """
                     echo ${scannerHome}/bin/sonar-scanner
                     ${scannerHome}/bin/sonar-scanner
                      -Dsonar.projectKey=mycompany \
