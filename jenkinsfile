@@ -1,5 +1,9 @@
 pipeline{
     agent any
+    environment {
+    registry = "rajak123/assignment"
+    registryCredential = ‘dockerhub’
+  }
     stages {
         stage ('initialize'){
             steps {
@@ -16,7 +20,7 @@ pipeline{
                 """
             }
         }
-          stage('Sonarqube') {
+        stage('Sonarqube') {
             environment {
                 scannerHome = tool 'sonarqubescanner'
             }    
@@ -27,10 +31,33 @@ pipeline{
                     ${scannerHome}/bin/sonar-scanner
                      """
                 }      
-                timeout(time: 10, unit: 'MINUTES') {
+               /* timeout(time: 10, unit: 'MINUTES') {
                  waitForQualityGate abortPipeline: true
+                } */
+            }
+            post {
+                success {
+                    echo "Now Archiving the Artifacts...."
+                    archiveArtifacts artifacts: '**/*.war'
                 }
             }
         }
+        stage('Building image') {
+            steps{
+                script {
+                    docker.build registry + ":$BUILD_NUMBER"
+                }
+             }
+        }
+        stage('Deploy Image') {
+            steps{
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    }
+                }
+            }
+         }
+
     }
 }
