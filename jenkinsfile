@@ -42,8 +42,9 @@ pipeline{
                 } */
             }
         }
-        post {
-            always {
+        stage('Save artifacts') {
+            steps {
+                
                 archiveArtifacts artifacts: '**/*.jar', fingerprint: true
             }
         }
