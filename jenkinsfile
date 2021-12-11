@@ -19,6 +19,12 @@ pipeline{
                 echo "Building Artefacts"
                 """
             }
+            post {
+                success {
+                    echo "Now Archiving the Artifacts...."
+                    archiveArtifacts artifacts: '**/*.jar'
+                }
+            }
         }
         stage('Sonarqube') {
             environment {
@@ -34,12 +40,6 @@ pipeline{
                /* timeout(time: 10, unit: 'MINUTES') {
                  waitForQualityGate abortPipeline: true
                 } */
-            }
-            post {
-                success {
-                    echo "Now Archiving the Artifacts...."
-                    archiveArtifacts artifacts: '**/*.jar'
-                }
             }
         }
         stage('Create Tomcat Docker Image'){
