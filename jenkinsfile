@@ -42,12 +42,12 @@ pipeline{
                 }
             }
         }
-        stage('Building image') {
-            steps{
-                script {
-                    docker.build registry + ":$BUILD_NUMBER"
-                }
-             }
+        stage('Create Tomcat Docker Image'){
+            steps {
+                sh "pwd"
+                sh "ls -a"
+                sh "docker build . -t mavenHelloWorld:${env.BUILD_ID}"
+            }
         }
         stage('Deploy Image') {
             steps{
