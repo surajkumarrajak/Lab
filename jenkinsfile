@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment {
     registry = "rajak123/assignment"
-    registryCredential = ‘dockerhub’
+    registryCredential = "dockerhub"
   }
     stages {
         stage ('initialize'){
