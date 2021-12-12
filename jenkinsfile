@@ -84,7 +84,7 @@ pipeline{
             post {
                 always {
                     mail to: "${EMAIL_INFORM}",
-                        subject: "Status of pipeline: $PROJECT_NAME - ${currentBuild.fullDisplayName}",
+                        subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
                             body: "${env.BUILD_URL} for DEV branch has result ${currentBuild.result}"
                 }
             }
