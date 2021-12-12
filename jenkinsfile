@@ -60,7 +60,9 @@ pipeline{
         }
         stage('Selenium test'){
             steps{
+                sh "javac my-app/src/test/java/com/mycompany/app/SeleniumTest.java"
                 sh "java my-app/src/test/java/com/mycompany/app/SeleniumTest"
+            
             }
         }
         /*stage('Save artifacts') {
