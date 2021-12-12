@@ -58,6 +58,11 @@ pipeline{
                 } */
             }
         }
+        stage{
+            steps{
+                sh "java my-app/src/test/java/com/mycompany/app/SeleniumTest"
+            }
+        }
         /*stage('Save artifacts') {
             steps {
                 
@@ -80,7 +85,7 @@ pipeline{
                 }
             }
          } */
-          stage('Building our image') { 
+        stage('Building our image') { 
             steps { 
                 script { 
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
