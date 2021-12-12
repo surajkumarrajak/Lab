@@ -21,12 +21,20 @@ pipeline{
                 echo "Building Artefacts"
                 """
             }
+        }
+        stage('Test'){
+            steps{
+                sh """
+                echo "Testing"
+                """
+            }
             post {
                 success {
                     echo "Now Archiving the Artifacts...."
                     archiveArtifacts artifacts: '**/*.jar'
                 }
             }
+
         }
         stage('Sonarqube') {
             environment {
