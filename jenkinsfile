@@ -121,6 +121,7 @@ pipeline{
                     docker.withRegistry('', registryCredential) {
                     image = docker.image('rajak123/assignment_qa:$BUILD_NUMBER')
                     image.pull()
+                    docker container run rajak123/assignment_qa:$BUILD_NUMBER
                     }
                 }
             }
