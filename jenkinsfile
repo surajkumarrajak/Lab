@@ -61,10 +61,10 @@ pipeline{
         /*stage('Save artifacts') {
             steps {
                 
-                archiveArtifacts artifacts: '**/*.jar', fingerprint: true
+                archiveArtifacts artifacts: '***.jar', fingerprint: true
             }
-        }*/
-       /* stage('Create Tomcat Docker Image'){
+        }
+         stage('Create Tomcat Docker Image'){
             steps {
                 sh "pwd"
                 sh "ls -a"
