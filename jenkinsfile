@@ -1,35 +1,93 @@
 pipeline{
     agent any
-    {
-        tools{
-            maven '3.6.3'
-            jdk 'openjdk11'
-        }
-        stages{
-
-            stage ('Initialize') {
+    environment {
+    registry = "rajak123/assignment_QA"
+    registryCredential = "dockerhub"
+    dockerImage = ''
+     /*EMAIL_INFORM = 'surajkumarrajak14@gmail.com','robotm095@gmail.com','sdeeksha167@gmail.com'*/
+  }
+    stages {
+        stage ('initialize'){
             steps {
                 sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
+                    echo "Initializing"
                 ''' 
             }
         }
-            stage ('Build') {
-                steps {
-                    sh """
-                    echo "Building code"
-                    """
-                }
-            }
-            stage ('Test'){
-            steps{
+        stage ('Build Application') {
+            steps {
+                sh 'mvn -f my-app/pom.xml clean package'
                 sh """
-                echo "testing code"
+                echo "Building Artefacts"
                 """
-
-            } 
             }
         }
-    }
-}
+        stage('Test'){
+            steps{
+                sh """
+                echo "testing"
+                """
+            }
+            post {
+                success {
+                    echo "Now Archiving the Artifacts...."
+                    archiveArtifacts artifacts: '**/*.jar'
+                }
+            }
+        }
+        stage('Sonarqube') {
+            environment {
+                scannerHome = tool 'sonarqubescanner'
+            }    
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                   sh """
+                    echo ${scannerHome}/bin/sonar-scanner
+                    ${scannerHome}/bin/sonar-scanner
+                     """
+                }      
+               /* timeout(time: 10, unit: 'MINUTES') {
+                 waitForQualityGate abortPipeline: true
+                } */
+            }
+        }
+       /* stage('Create Tomcat Docker Image'){
+            steps {
+                sh "pwd"
+                sh "ls -a"
+                sh "docker build . -t mavenhelloworld:${env.BUILD_ID}"
+            }
+        }
+        stage('Deploy Image') {
+            steps{
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    }
+                }
+            }
+         } */
+          stage('Building our image') { 
+            steps { 
+                script { 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
+                }
+            }
+        }
+        stage('Deploy our image') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                }
+            }
+            post {
+                always {
+                    emailext (
+                        to: 'surajkumarrajak14@gmail.com,robotm095@gmail.com,sdeeksha167@gmail.com',
+                        subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
+                        body: "${env.BUILD_URL} for QA branch has result ${currentBuild.result}"
+                        )
+                }
+            }
