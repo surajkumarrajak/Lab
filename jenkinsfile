@@ -4,7 +4,7 @@ pipeline{
     registry = "rajak123/assignment"
     registryCredential = "dockerhub"
     dockerImage = ''
-     EMAIL_INFORM = 'surajkumarrajak14@gmail.com','robotm095@gmail.com','sdeeksha167@gmail.com'
+     /*EMAIL_INFORM = 'surajkumarrajak14@gmail.com','robotm095@gmail.com','sdeeksha167@gmail.com'*/
   }
     stages {
         stage ('initialize'){
@@ -83,7 +83,7 @@ pipeline{
             }
             post {
                 always {
-                    mail to: "${EMAIL_INFORM}",
+                    to: 'surajkumarrajak14@gmail.com,robotm095@gmail.com,sdeeksha167@gmail.com',
                         subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
                             body: "${env.BUILD_URL} for DEV branch has result ${currentBuild.result}"
                 }
