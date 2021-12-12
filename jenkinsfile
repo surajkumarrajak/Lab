@@ -119,7 +119,7 @@ pipeline{
             steps{
                 script{
                     docker.withRegistry('', registryCredential) {
-                    image = docker.image('rajak123/assignment_qa:lts')
+                    image = docker.image('rajak123/assignment_qa:$BUILD_NUMBER')
                     image.pull()
                     }
                 }
