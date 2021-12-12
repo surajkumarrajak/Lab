@@ -58,7 +58,7 @@ pipeline{
                 } */
             }
         }
-        stage{
+        stage('Selenium test'){
             steps{
                 sh "java my-app/src/test/java/com/mycompany/app/SeleniumTest"
             }
