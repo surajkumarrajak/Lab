@@ -1,5 +1,8 @@
 pipeline{
     agent any
+     triggers {
+        pollSCM 'H/10 * * * *'
+    }
     environment {
     registry = "rajak123/assignment_qa"
     registryCredential = "dockerhub"
