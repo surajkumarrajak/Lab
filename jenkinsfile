@@ -1,11 +1,14 @@
 pipeline{
     agent any
     environment {
-    registry = "rajak123/assignment"
+    registry = "rajak123/assignment_qa"
     registryCredential = "dockerhub"
     dockerImage = ''
      /*EMAIL_INFORM = 'surajkumarrajak14@gmail.com','robotm095@gmail.com','sdeeksha167@gmail.com'*/
   }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+    }
     stages {
         stage ('initialize'){
             steps {
