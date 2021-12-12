@@ -58,12 +58,12 @@ pipeline{
                 } */
             }
         }
-        stage('Save artifacts') {
+        /*stage('Save artifacts') {
             steps {
                 
                 archiveArtifacts artifacts: '**/*.jar', fingerprint: true
             }
-        }
+        }*/
        /* stage('Create Tomcat Docker Image'){
             steps {
                 sh "pwd"
