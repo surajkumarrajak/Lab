@@ -106,7 +106,7 @@ pipeline{
             post {
                 always {
                     emailext (
-                        from: 'robotm095@gmail.com'
+                        from: 'robotm095@gmail.com',
                         to: 'surajkumarrajak14@gmail.com,robotm095@gmail.com,sdeeksha167@gmail.com',
                         subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
                         body: "${env.BUILD_URL} for QA branch has result ${currentBuild.result}. Please go to URL and approve for deployment."
