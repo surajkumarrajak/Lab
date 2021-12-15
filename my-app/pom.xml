@@ -31,7 +31,17 @@
       <version>1.0-20081010.060147</version>
     </dependency>
 
-
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>3.0.0-beta2</version>
+    </dependency>  
+    <dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>7.3.0</version>
+    <scope>test</scope>
+</dependency>
 
     <dependency>
       <groupId>junit</groupId>
