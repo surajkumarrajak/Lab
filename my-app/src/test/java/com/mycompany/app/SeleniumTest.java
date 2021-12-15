@@ -2,7 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.concurrent.TimeUnit;
-public class WithoutBrowsr{
+public class SeleniumTest{
    public static void main(String[] args) {
       System.setProperty("webdriver.chrome.driver", "/home/lab/Lab/resources/chromedriver.exe");
       //ChromeOptions object
