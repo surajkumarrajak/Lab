@@ -1,41 +1,51 @@
+package com.mycompany.app;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-//comment the above line and uncomment below line to use Chrome
-//import org.openqa.selenium.chrome.ChromeDriver;
-public class SeleniumTest {
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-    public static void main(String[] args) {
-        // declaration and instantiation of objects/variables
-    	System.setProperty("webdriver.gecko.driver","C:\\geckodriver.exe");
-		WebDriver driver = new FirefoxDriver();
-		//comment the above 2 lines and uncomment below 2 lines to use Chrome
-		//System.setProperty("webdriver.chrome.driver","G:\\chromedriver.exe");
-		//WebDriver driver = new ChromeDriver();
-    	
-        String baseUrl = "http://demo.guru99.com/test/newtours/";
-        String expectedTitle = "Welcome: Mercury Tours";
-        String actualTitle = "";
-
-        // launch Fire fox and direct it to the Base URL
-        driver.navigate.to(baseUrl);
-
-        // get the actual value of the title
-        actualTitle = driver.getTitle();
-
-        /*
-         * compare the actual title of the page with the expected one and print
-         * the result as "Passed" or "Failed"
-         */
-        if (actualTitle.contentEquals(expectedTitle)){
-            System.out.println("Test Passed!");
-        } else {
-            System.out.println("Test Failed");
-        }
-       
-        //close Fire fox
-        driver.close();
-       
-    }
-
+import junit.framework.Assert;  
+  
+public class SeleniumTest {  
+  
+    public static void main(String[] args) {  
+        
+    // declaration and instantiation of objects/variables  
+    System.setProperty("webdriver.chrome.driver", "/Users/I330033/JAR/Selenium/chromedriver");  
+    WebDriver driver=new ChromeDriver();  
+      
+// Launch website  
+    driver.navigate().to("http://www.google.com/");  
+    System.out.println("navigated to google......");
+          
+    // Click on the search text box and send value  
+    driver.findElement(By.name("q")).sendKeys("https://www.spicejet.com/"); 
+    System.out.println("found lst-ib......");
+          
+    
+    WebDriverWait mywait=new WebDriverWait(driver,40);
+    WebElement ele=mywait.until(ExpectedConditions.elementToBeClickable(By.name("btnK")));
+    ele.click();
+    // Click on the search button  
+    Dimension txt = driver.findElement(By.name("q")).getSize(); 
+    System.out.println("txt...... " + txt.getHeight());
+    
+    // height is 39, assert height
+    
+    Assert.assertTrue(txt.getHeight() == 39);
+    
+    Test test = new Test();
+   
+    //System.out.println(test.getMessage());
+   Assert.assertTrue(test.getMessage().equals("Hello World!"));
+   
+   test.setMessage("bye bye");
+   Assert.assertFalse(test.getMessage().equals("Hello World!"));
+     
+    }  
+  
 }
