@@ -8,7 +8,7 @@ public class SeleniumTest{
       //ChromeOptions object
       ChromeOptions opt = new ChromeOptions();
       //headless parameter
-      opt.addArguments("headless");
+      //opt.addArguments("headless");
       // set parameter to Chrome driver
       WebDriver driver = new ChromeDriver(opt);
       driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
