@@ -1,53 +1,20 @@
-package com.mycompany.app;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.*;
-
-import junit.framework.Assert;  
-  
-public class SeleniumTest  extends TestCase{  
-
-  
-    public static void main(String[] args) {  
-        
-    // declaration and instantiation of objects/variables  
-    System.setProperty("webdriver.chrome.driver", "/home/lab/Lab/resources/chromedriver");  
-    WebDriver driver=new ChromeDriver();  
-      
-// Launch website  
-    driver.navigate().to("http://www.google.com/");  
-    System.out.println("navigated to google......");
-          
-    // Click on the search text box and send value  
-    driver.findElement(By.name("q")).sendKeys("https://www.spicejet.com/"); 
-    System.out.println("found lst-ib......");
-          
-    
-    WebDriverWait mywait=new WebDriverWait(driver,40);
-    WebElement ele=mywait.until(ExpectedConditions.elementToBeClickable(By.name("btnK")));
-    ele.click();
-    // Click on the search button  
-    Dimension txt = driver.findElement(By.name("q")).getSize(); 
-    System.out.println("txt...... " + txt.getHeight());
-    
-    // height is 39, assert height
-    
-    Assert.assertTrue(txt.getHeight() == 39);
-    
-    Test test = new Test();
-   
-    //System.out.println(test.getMessage());
-   Assert.assertTrue(test.getMessage().equals("Hello World!"));
-   
-   test.setMessage("bye bye");
-   Assert.assertFalse(test.getMessage().equals("Hello World!"));
-     
-    }  
-  
+import org.openqa.selenium.chrome.ChromeOptions;
+import java.util.concurrent.TimeUnit;
+public class WithoutBrowsr{
+   public static void main(String[] args) {
+      System.setProperty("webdriver.chrome.driver", "/home/lab/Lab/resources/chromedriver.exe");
+      //ChromeOptions object
+      ChromeOptions opt = new ChromeOptions();
+      //headless parameter
+      opt.addArguments("headless");
+      // set parameter to Chrome driver
+      WebDriver driver = new ChromeDriver(opt);
+      driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+      driver.get("https://www.tutorialspoint.com/questions/index.php");
+      // obtain page title
+      System.out.println("Page title without browser: " + driver.getTitle());
+      driver.quit();
+   }
 }
