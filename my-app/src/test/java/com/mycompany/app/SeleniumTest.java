@@ -1,20 +1,41 @@
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import java.util.concurrent.TimeUnit;
-public class SeleniumTest{
-   public static void main(String[] args) {
-      System.setProperty("webdriver.chrome.driver", "/home/lab/Lab/resources/chromedriver.exe");
-      //ChromeOptions object
-      ChromeOptions opt = new ChromeOptions();
-      //headless parameter
-      //opt.addArguments("headless");
-      // set parameter to Chrome driver
-      WebDriver driver = new ChromeDriver(opt);
-      driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
-      driver.get("https://www.tutorialspoint.com/questions/index.php");
-      // obtain page title
-      System.out.println("Page title without browser: " + driver.getTitle());
-      driver.quit();
-   }
+import org.openqa.selenium.firefox.FirefoxDriver;
+//comment the above line and uncomment below line to use Chrome
+//import org.openqa.selenium.chrome.ChromeDriver;
+public class PG1 {
+
+
+    public static void main(String[] args) {
+        // declaration and instantiation of objects/variables
+    	System.setProperty("webdriver.gecko.driver","/home/lab/Lab/resources");
+		WebDriver driver = new FirefoxDriver();
+		//comment the above 2 lines and uncomment below 2 lines to use Chrome
+		//System.setProperty("webdriver.chrome.driver","G:\\chromedriver.exe");
+		//WebDriver driver = new ChromeDriver();
+    	
+        String baseUrl = "http://demo.guru99.com/test/newtours/";
+        String expectedTitle = "Welcome: Mercury Tours";
+        String actualTitle = "";
+
+        // launch Fire fox and direct it to the Base URL
+        driver.get(baseUrl);
+
+        // get the actual value of the title
+        actualTitle = driver.getTitle();
+
+        /*
+         * compare the actual title of the page with the expected one and print
+         * the result as "Passed" or "Failed"
+         */
+        if (actualTitle.contentEquals(expectedTitle)){
+            System.out.println("Test Passed!");
+        } else {
+            System.out.println("Test Failed");
+        }
+       
+        //close Fire fox
+        driver.close();
+       
+    }
+
 }
