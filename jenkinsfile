@@ -60,8 +60,8 @@ pipeline{
         }
         stage('Selenium test'){
             steps{
-                /*sh 'mvn -f my-app/pom.xml compile test'*/
-                sh "javac my-app/src/test/java/com/mycompany/app/SeleniumTest.java"
+                sh 'mvn -f my-app/pom.xml compile'
+                /*sh "javac my-app/src/test/java/com/mycompany/app/SeleniumTest.java"*/
                 sh "java my-app/src/test/java/com/mycompany/app/SeleniumTest"
             
             }
