@@ -62,7 +62,7 @@ pipeline{
             steps{
                 sh 'mvn -f my-app/pom.xml compile'
                 /*sh "javac my-app/src/test/java/com/mycompany/app/SeleniumTest.java"*/
-                sh "java /var/lib/jenkins/workspace/Assignment-1_QA/my-app/target/test-classes/SeleniumTest"
+                sh "java SeleniumTest"
             
             }
         }
