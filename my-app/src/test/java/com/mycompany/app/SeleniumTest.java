@@ -9,10 +9,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import junit.framework.Assert;  
-  
+
 public class SeleniumTest {  
   
-    public static void main(String[] args) {  
+   // public static void main(String[] args) {  
+
+       @Test
+       public void TestSelenium(){
         
     // declaration and instantiation of objects/variables  
     System.setProperty("webdriver.chrome.driver", "/Users/I330033/JAR/Selenium/chromedriver");  
