@@ -12,13 +12,13 @@ import junit.framework.Assert;
 
 public class SeleniumTest {  
   
-   // public static void main(String[] args) {  
+   public static void main(String[] args) {  
 
-       @Test
+       //@Test
        public void TestSelenium(){
         
     // declaration and instantiation of objects/variables  
-    System.setProperty("webdriver.chrome.driver", "/Users/I330033/JAR/Selenium/chromedriver");  
+    System.setProperty("webdriver.firefox.driver", "/home/lab/Lab/resources/geckodriver");  
     WebDriver driver=new ChromeDriver();  
       
 // Launch website  
