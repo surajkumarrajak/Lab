@@ -98,7 +98,7 @@
 	    <configuration>
         <filters>
           <filter>
-            <artifact>org.bouncycastle:*</artifact>
+            <artifact>*:*</artifact>
             <excludes>
                 <exclude>META-INF/*.SF</exclude>
                 <exclude>META-INF/*.DSA</exclude>
