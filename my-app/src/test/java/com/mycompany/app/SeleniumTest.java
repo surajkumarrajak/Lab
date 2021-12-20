@@ -15,11 +15,11 @@ public class SeleniumTest {
    public static void main(String[] args) {  
 
        //@Test
-       public void TestSelenium(){
+       //public void TestSelenium(){
         
     // declaration and instantiation of objects/variables  
     System.setProperty("webdriver.firefox.driver", "/home/lab/Lab/resources/geckodriver");  
-    WebDriver driver=new ChromeDriver();  
+    WebDriver driver=new FirefoxDriver();  
       
 // Launch website  
     driver.navigate().to("http://www.google.com/");  
