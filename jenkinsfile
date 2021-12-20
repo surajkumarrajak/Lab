@@ -102,7 +102,7 @@ pipeline{
                    
                     }
                 }
-                sh "docker container run -d $registry:$BUILD_NUMBER"
+                sh "docker container run -dit $registry:$BUILD_NUMBER"
             }
         }
     }
