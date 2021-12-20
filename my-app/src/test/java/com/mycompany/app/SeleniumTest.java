@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 import junit.framework.Assert;  
 
@@ -19,7 +18,7 @@ public class SeleniumTest {
        //@Test
        //public void TestSelenium(){
         
-    WebDriverManager.firefoxdriver().setup();   
+    
     // declaration and instantiation of objects/variables  
     System.setProperty("webdriver.gecko.driver", "/home/lab/Lab/resources/geckodriver");  
     WebDriver driver=new FirefoxDriver();  
