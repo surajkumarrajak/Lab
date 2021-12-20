@@ -18,7 +18,7 @@ public class SeleniumTest {
        //public void TestSelenium(){
         
     // declaration and instantiation of objects/variables  
-    System.setProperty("webdriver.firefox.driver", "/home/lab/Lab/resources/geckodriver");  
+    System.setProperty("webdriver.gecko.driver", "/home/lab/Lab/resources/geckodriver");  
     WebDriver driver=new FirefoxDriver();  
       
 // Launch website  
