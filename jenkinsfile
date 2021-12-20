@@ -103,7 +103,7 @@ pipeline{
             post {
                 always {
                     emailext (
-                        attachmentsPattern: '**/emailable-report.html'
+                        attachmentsPattern: '**/emailable-report.html',
                         from: 'robotm095@gmail.com',
                         to: 'surajkumarrajak14@gmail.com,robotm095@gmail.com,sdeeksha167@gmail.com',
                         subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
