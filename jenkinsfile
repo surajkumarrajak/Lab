@@ -93,5 +93,17 @@ pipeline{
             }
 
         }
+        stage('Deploy Application'){
+            steps{
+                script{
+                    docker.withRegistry('', registryCredential) {
+                    image = docker.image('$registry:$BUILD_NUMBER')
+                    image.pull()
+                   
+                    }
+                }
+                sh "docker container run $registry:$BUILD_NUMBER"
+            }
+        }
     }
 }
